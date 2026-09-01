@@ -40,7 +40,9 @@ impl Pid {
         let unsat = self.kp * error + self.ki * self.integral + self.kd * d;
         let sat = unsat.clamp(self.out_min, self.out_max);
         // Integrator only moves when it would help leave saturation.
-        if (sat - unsat).abs() < f32::EPSILON || sat.signum() == error.signum() {
+        let unsaturated = libm::fabsf(sat - unsat) < f32::EPSILON;
+        let same_sign = (sat >= 0.0) == (error >= 0.0);
+        if unsaturated || same_sign {
             self.integral = (self.integral + error).clamp(self.out_min, self.out_max);
         }
         sat
