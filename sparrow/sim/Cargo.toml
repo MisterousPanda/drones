@@ -1,0 +1,9 @@
+[package]
+name = "sim"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Laptop smoke test for Sparrow control laws"
+
+[dependencies]
+flight-core = { path = "../flight-core" }

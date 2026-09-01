@@ -1,0 +1,236 @@
+:root {
+  --paper: #f3ead4;
+  --paper-deep: #e7d8b8;
+  --rule: rgba(42, 74, 122, 0.14);
+  --graphite: #2b2722;
+  --graphite-soft: #5a5248;
+  --red-pencil: #b42318;
+  --blue-stamp: #1f4b8f;
+  --margin: #e3b8b0;
+  --shadow: rgba(43, 39, 34, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.35), transparent 28%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      var(--rule) 28px
+    ),
+    var(--paper);
+  color: var(--graphite);
+  font-family: "IBM Plex Serif", "Palatino Linotype", Palatino, serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 52px;
+  background: linear-gradient(90deg, #d9a39a, var(--margin));
+  box-shadow: 4px 0 0 rgba(43, 39, 34, 0.06);
+  pointer-events: none;
+}
+
+a {
+  color: var(--blue-stamp);
+}
+
+a:hover {
+  color: var(--red-pencil);
+}
+
+.sheet {
+  width: min(920px, calc(100% - 88px));
+  margin: 36px 28px 64px 76px;
+}
+
+.mast {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.brand {
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: 2.7rem;
+  line-height: 0.9;
+  margin: 0;
+  transform: rotate(-1.2deg);
+}
+
+.brand small {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--graphite-soft);
+  margin-top: 8px;
+}
+
+.stamp {
+  border: 3px solid var(--blue-stamp);
+  color: var(--blue-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  padding: 8px 10px;
+  transform: rotate(3deg);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+nav.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: 0 0 32px;
+  font-family: "Caveat", cursive;
+  font-size: 1.35rem;
+}
+
+nav.toc a {
+  text-decoration: none;
+  border-bottom: 1px dashed var(--blue-stamp);
+}
+
+.wobble {
+  border: 2px solid var(--graphite);
+  border-radius: 2px 14px 3px 10px / 10px 3px 12px 4px;
+  box-shadow: 3px 4px 0 var(--shadow);
+  background: rgba(255, 252, 244, 0.55);
+}
+
+.lede {
+  padding: 22px 24px 8px;
+  margin-bottom: 28px;
+}
+
+.lede p {
+  font-size: 1.12rem;
+  line-height: 1.65;
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 8px;
+}
+
+.spec-table th,
+.spec-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px dashed rgba(43, 39, 34, 0.25);
+  vertical-align: top;
+}
+
+.spec-table th {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite-soft);
+}
+
+.desk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.desk-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 16px 16px 12px;
+}
+
+.desk-card h2 {
+  font-family: "Caveat", cursive;
+  font-size: 1.8rem;
+  margin: 6px 0 8px;
+}
+
+.desk-card p {
+  margin: 0;
+  color: var(--graphite-soft);
+}
+
+.desk-card .stamp {
+  display: inline-block;
+  font-size: 0.62rem;
+  padding: 4px 6px;
+}
+
+.warn {
+  border-color: var(--red-pencil);
+  color: var(--red-pencil);
+  padding: 14px 16px;
+  margin: 28px 0;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+article.note {
+  padding: 8px 4px 40px;
+}
+
+article.note h1 {
+  font-family: "Caveat", cursive;
+  font-size: 3rem;
+  margin: 0 0 6px;
+  transform: rotate(-0.6deg);
+}
+
+article.note .frozen {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--blue-stamp);
+  margin-bottom: 22px;
+}
+
+article.note p,
+article.note li {
+  line-height: 1.7;
+}
+
+article.note h2 {
+  font-size: 1.2rem;
+  margin-top: 1.8em;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.92rem;
+  background: rgba(255, 255, 255, 0.35);
+  padding: 12px 14px;
+  overflow-x: auto;
+}
+
+footer.colophon {
+  margin-top: 40px;
+  color: var(--graphite-soft);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 700px) {
+  body::before {
+    width: 18px;
+  }
+
+  .sheet {
+    width: calc(100% - 36px);
+    margin: 20px 12px 48px 24px;
+  }
+
+  .mast {
+    flex-direction: column;
+  }
+}

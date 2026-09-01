@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Notebook from '../layouts/Notebook.astro';
+
+const desks = (await getCollection('desks')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Notebook title="Sparrow Notes">
+  <section class="wobble lede">
+    <p>
+      This is the notebook for <strong>Sparrow</strong>, a 245 g educational quadrotor
+      programmed in Rust. Nine specialist desks argued. A chief engineer froze one
+      airframe, one pack, one brain. The site is that freeze. The laptop crate
+      <code>flight-core</code> already host-tests the mixer, PID, Mahony filter,
+      arming castle, and 3S LVC.
+    </p>
+    <table class="spec-table">
+      <thead>
+        <tr><th>Desk</th><th>What we fly</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Battery</td><td>3S 650 mAh LiPo, 50–52 g, XT30</td></tr>
+        <tr><td>Rotors</td><td>3.0×2.0 in 2-blade plastic, full rings</td></tr>
+        <tr><td>Motors</td><td>1404 3700 Kv, 15 A 4-in-1, DShot300</td></tr>
+        <tr><td>Airframe</td><td>245 g all-up weight</td></tr>
+        <tr><td>Brain</td><td>STM32F405 + ICM-42688-P, Rust <code>no_std</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <p class="wobble warn">
+    Never cut motors in the air. Charge LiPos in a fire bag. Props off for bench tests.
+  </p>
+
+  <div class="desk-grid">
+    {desks.map((desk) => (
+      <a class="wobble desk-card" href={`/desks/${desk.id}`}>
+        <span class="stamp">{desk.data.stamp}</span>
+        <h2>{desk.data.title}</h2>
+        <p>{desk.data.summary}</p>
+      </a>
+    ))}
+  </div>
+</Notebook>

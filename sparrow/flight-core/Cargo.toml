@@ -1,0 +1,12 @@
+[package]
+name = "flight-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Host-testable quadrotor control laws for Sparrow"
+
+[lib]
+crate-type = ["lib"]
+
+[dependencies]
+libm = "0.2"
