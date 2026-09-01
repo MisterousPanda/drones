@@ -2,7 +2,7 @@
 
 A pencil-drawn field guide for **Sparrow**, a 245 g educational quadrotor programmed in **Rust**. Nine specialist desks — battery, rotors, motors, weight, aerodynamics, controls, firmware, microprocessors, operating systems — researched the bird. A chief engineer froze one spec. This site is that notebook.
 
-Built with **Astro** and hosted on Vercel.
+Built with **Astro**. V1 is the static field guide plus host-tested `flight-core` laws.
 
 ## Frozen spec
 
@@ -23,6 +23,12 @@ npm install
 npm run dev
 ```
 
+Production build:
+
+```bash
+npm run build
+```
+
 ## Flight math (laptop)
 
 ```bash
@@ -31,7 +37,7 @@ cargo test -p flight-core
 cargo run -p sim
 ```
 
-`firmware/` is a documented shell for the STM32 target. It is excluded from the default workspace until a board support package is wired. The mixer, PID, Mahony filter, arming castle, and LVC policy are already host-tested in `flight-core`.
+`firmware/` is a documented shell for the STM32 target. It is excluded from the default workspace until a board support package is wired. The mixer, PID, Mahony filter, arming castle, and LVC policy are host-tested in `flight-core`.
 
 ## Safety
 

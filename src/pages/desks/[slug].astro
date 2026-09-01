@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+import Notebook from '../../layouts/Notebook.astro';
+
+export async function getStaticPaths() {
+  const desks = await getCollection('desks');
+  return desks.map((desk) => ({
+    params: { slug: desk.id },
+    props: { desk },
+  }));
+}
+
+const { desk } = Astro.props;
+const { Content } = await render(desk);
+---
+
+<Notebook title={`${desk.data.title} · Sparrow Notes`} description={desk.data.summary}>
+  <article class="note">
+    <div class="stamp">{desk.data.stamp}</div>
+    <h1>{desk.data.title}</h1>
+    <p class="frozen">{desk.data.frozen}</p>
+    <Content />
+  </article>
+</Notebook>

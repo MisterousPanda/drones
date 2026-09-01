@@ -1,0 +1,34 @@
+---
+import Notebook from '../layouts/Notebook.astro';
+---
+
+<Notebook title="Flight math · Sparrow Notes" description="Host-tested control laws for Sparrow.">
+  <article class="note">
+    <div class="stamp">laptop crate</div>
+    <h1>Flight math</h1>
+    <p class="frozen">
+      V1 proves the laws on a laptop. The STM32 shell is documented, not boarded.
+    </p>
+    <p>
+      <code>flight-core</code> is <code>no_std</code> except under test. Motor order is
+      FL, FR, RL, RR. Rotation is FL CW, FR CCW, RL CCW, RR CW. The mixer lifts a
+      hover, then adds body torques, then floors any negative and clamps to
+      <code>[0, 1]</code>. DShot is 0 when disarmed and <code>48..=2047</code> when armed.
+    </p>
+    <pre class="wobble mono"><code>cd sparrow
+cargo test -p flight-core
+cargo run -p sim</code></pre>
+    <h2>What is actually tested</h2>
+    <ul>
+      <li>X-quad mixer and DShot mapping</li>
+      <li>Parallel PID with clamp</li>
+      <li>Mahony roll/pitch from accel + gyro</li>
+      <li>Arming castle and failsafe/LVC disarm</li>
+      <li>3S warn at 10.5 V, latched cut at 9.9 V</li>
+    </ul>
+    <p>
+      <code>firmware/</code> stays out of the default workspace until a board support
+      package is wired. Do not pretend a green laptop test is a maiden.
+    </p>
+  </article>
+</Notebook>

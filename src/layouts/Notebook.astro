@@ -1,0 +1,54 @@
+---
+import '../styles/notebook.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Pencil-drawn field guide for Sparrow, a 245 g Rust quadrotor.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="sheet">
+      <header class="mast">
+        <div>
+          <p class="brand">Sparrow Notes <small>field guide · 245 g · Rust</small></p>
+        </div>
+        <div class="stamp">V1 frozen spec</div>
+      </header>
+      <nav class="toc" aria-label="Notebook sections">
+        <a href="/">Cover</a>
+        <a href="/desks/battery">Battery</a>
+        <a href="/desks/rotors">Rotors</a>
+        <a href="/desks/motors">Motors</a>
+        <a href="/desks/weight">Weight</a>
+        <a href="/desks/aerodynamics">Aero</a>
+        <a href="/desks/controls">Controls</a>
+        <a href="/desks/firmware">Firmware</a>
+        <a href="/desks/microprocessors">MCU</a>
+        <a href="/desks/operating-systems">OS</a>
+        <a href="/math">Flight math</a>
+        <a href="/safety">Safety</a>
+      </nav>
+      <slot />
+      <footer class="colophon">
+        Nine desks researched the bird. One spec flew. Props off until the castle says armed.
+      </footer>
+    </div>
+  </body>
+</html>
